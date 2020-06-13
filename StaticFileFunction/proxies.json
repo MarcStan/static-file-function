@@ -3,10 +3,24 @@
   "proxies": {
     "httpProxy": {
       "matchCondition": {
-        "methods": [ "GET" ],
+        "methods": [ "GET", "HEAD", "OPTIONS" ],
         "route": "{*path}"
       },
       "backendUri": "http://localhost/api/http?path={path}"
+    },
+    "apiProxy": {
+      "matchCondition": {
+        "route": "/api/{*url}",
+        "methods": [
+          "GET",
+          "PUT",
+          "POST",
+          "DELETE",
+          "HEAD",
+          "OPTIONS"
+        ]
+      },
+      "backendUri": "https://localhost/api/{url}"
     }
   }
 }
